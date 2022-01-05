@@ -27,3 +27,4 @@ COPY heroku-exec.sh /app/.profile.d/
 
 FROM base AS frontend
 USER mastodon
+ENTRYPOINT []
