@@ -5,7 +5,7 @@ USER root
 RUN mkdir -p /var/cache/apt && \
     apt-get update && \
     apt-get -y --no-install-recommends install \
-	  bash curl nginx openssh iproute2 python && \
+	  bash curl nginx openssh-client iproute2 python && \
 	apt-get clean
 RUN gem install foreman
 RUN rm -f /etc/nginx/sites-available/default /etc/nginx/modules-available/* && \
