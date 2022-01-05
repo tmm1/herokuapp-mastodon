@@ -8,15 +8,16 @@ setup:
 
 build:
   docker:
-    web: Dockerfile
+    frontend: Dockerfile
 
 release:
-  image: worker
+  image: frontend
   command:
     - ./release.sh
 run:
-  web: foreman start
+  web:
+    image: frontend
+    command: foreman start
   worker:
-    image: web
-    command:
-      - bundle exec sidekiq
+    image: frontend
+    command: bundle exec sidekiq
