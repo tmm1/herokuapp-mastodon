@@ -42,14 +42,22 @@ $ heroku config:set SECRET_KEY_BASE=$(docker run --rm -it tootsuite/mastodon:lat
 $ heroku config:set $(docker run --rm -e OTP_SECRET=placeholder -e SECRET_KEY_BASE=placeholder -it tootsuite/mastodon:latest bin/rake mastodon:webpush:generate_vapid_key | xargs)
 ```
 
-Push container:
+#### Settings
+
+Configure storage for uploaded user photos and videos.
+
+See [lib/tasks/mastodon.rake](https://github.com/mastodon/mastodon/blob/5ba46952af87e42a64962a34f7ec43bc710bdcaf/lib/tasks/mastodon.rake#L137) for environment variables available for Wasabi, Minio or Google Cloud Storage.
 
 ```
-$ heroku container:push web
+$ heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
 ```
 
-Release and run migrations:
+
+#### Deploy
+
+Push to heroku, to build container and deploy:
+(Migrations will automatically be run as part of the release command.)
 
 ```
-$ heroku container:release
+$ git push heroku
 ```
