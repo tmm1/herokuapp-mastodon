@@ -35,6 +35,12 @@ $ heroku create mastodon-test --manifest
 $ heroku config:set LOCAL_DOMAIN=mastodon-test.herokuapp.com
 ```
 
+Create redis addon at v5 (without TLS):
+
+```
+$ heroku addons:create heroku-redis:premium-0 --version 5
+```
+
 Generate secrets:
 
 ```
