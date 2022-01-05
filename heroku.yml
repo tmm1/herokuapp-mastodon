@@ -1,0 +1,20 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+    - plan: heroku-redis
+  config:
+    WEB_CONCURRENCY: 2
+    RAILS_LOG_TO_STDOUT: enabled
+
+build:
+  docker:
+    web: Dockerfile
+    worker: Dockerfile
+
+release:
+  image: worker
+  command:
+    - ./release.sh
+run:
+  web: foreman start
+  worker: bundle exec sidekiq
