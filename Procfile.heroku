@@ -1,4 +1,3 @@
 nginx: ./nginx.sh
 rails: env PORT=3000 bundle exec puma -C config/puma.rb
 streaming: env PORT=4000 node ./streaming
-heroku: bash /app/.profile.d/heroku-exec.sh
