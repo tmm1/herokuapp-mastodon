@@ -21,4 +21,3 @@ RUN mkdir -p /opt/mastodon/cache/nginx && chown -R mastodon:mastodon /opt/mastod
 
 FROM base AS frontend
 USER mastodon
-ENTRYPOINT []

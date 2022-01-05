@@ -23,6 +23,7 @@ $ brew install heroku
 $ heroku login
 $ heroku update beta
 $ heroku plugins:install @heroku-cli/plugin-manifest
+$ heroku container:login
 ```
 
 #### App
@@ -41,3 +42,14 @@ $ heroku config:set SECRET_KEY_BASE=$(docker run --rm -it tootsuite/mastodon:lat
 $ heroku config:set $(docker run --rm -e OTP_SECRET=placeholder -e SECRET_KEY_BASE=placeholder -it tootsuite/mastodon:latest bin/rake mastodon:webpush:generate_vapid_key | xargs)
 ```
 
+Push container:
+
+```
+$ heroku container:push web
+```
+
+Release and run migrations:
+
+```
+$ heroku container:release
+```

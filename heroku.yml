@@ -9,7 +9,6 @@ setup:
 build:
   docker:
     web: Dockerfile
-    worker: Dockerfile
 
 release:
   image: worker
@@ -17,4 +16,7 @@ release:
     - ./release.sh
 run:
   web: foreman start
-  worker: bundle exec sidekiq
+  worker:
+    image: web
+    command:
+      - bundle exec sidekiq
