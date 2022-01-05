@@ -8,18 +8,18 @@ setup:
 
 build:
   docker:
-    frontend: Dockerfile
+    web: Dockerfile
 
 release:
-  image: frontend
+  image: web
   command:
     - ./release.sh
 run:
   web:
-    image: frontend
+    image: web
     command:
       - foreman start -f Procfile.heroku
   worker:
-    image: frontend
+    image: web
     command:
       - bundle exec sidekiq
