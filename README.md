@@ -32,6 +32,7 @@ Create the app and addons:
 
 ```
 $ heroku create mastodon-test --manifest
+$ heroku config:set LOCAL_DOMAIN=mastodon-test.herokuapp.com
 ```
 
 Generate secrets:
