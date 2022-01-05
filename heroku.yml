@@ -17,7 +17,9 @@ release:
 run:
   web:
     image: frontend
-    command: foreman start
+    command:
+      - foreman start
   worker:
     image: frontend
-    command: bundle exec sidekiq
+    command:
+      - bundle exec sidekiq
