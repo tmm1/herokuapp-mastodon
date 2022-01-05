@@ -14,12 +14,3 @@ release:
   image: web
   command:
     - ./release.sh
-run:
-  web:
-    image: web
-    command:
-      - foreman start -f Procfile.heroku
-  worker:
-    image: web
-    command:
-      - bundle exec sidekiq

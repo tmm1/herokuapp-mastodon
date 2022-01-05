@@ -18,13 +18,10 @@ RUN rm -rf .env .env.production && touch .env .env.production
 RUN rm -f /bin/sh && ln -s /bin/bash /bin/sh
 
 # copy over our extra stuff
-COPY --chown=mastodon:mastodon Procfile* nginx* release.sh /opt/mastodon/
+COPY --chown=mastodon:mastodon Procfile* nginx* *.sh /opt/mastodon/
 RUN mkdir -p /opt/mastodon/cache/nginx && chown -R mastodon:mastodon /opt/mastodon/cache
-
-# heroku ps:exec deps
-RUN mkdir -p /app/.profile.d
-COPY heroku-exec.sh /app/.profile.d/
 
 FROM base AS frontend
 USER mastodon
 ENTRYPOINT []
+CMD run.sh
