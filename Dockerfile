@@ -16,7 +16,7 @@ RUN rm -f /etc/nginx/sites-available/default /etc/nginx/modules-available/* && \
     ln -nsf /run/nginx/log /var/log/nginx
 
 # copy over our extra stuff
-COPY --chown=mastodon:mastodon Procfile nginx* /opt/mastodon
+COPY --chown=mastodon:mastodon Procfile nginx* /opt/mastodon/
 RUN mkdir -p /opt/mastodon/cache/nginx && chown -R mastodon:mastodon /opt/mastodon/cache
 
 FROM base AS frontend
