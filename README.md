@@ -75,7 +75,7 @@ $ heroku config:get BONSAI_URL
 $ heroku config:set ES_ENABLED=true ES_HOST= ES_PORT= ES_USER= ES_PASS=
 ```
 
-##### Deploy
+#### Deploy
 
 There are two ways to deploy.
 
@@ -85,7 +85,7 @@ manifest which will build the Docker image on heroku's servers and deploy it.
 Or you can build the docker locally, and push it directly to heroku's container
 registry and then deploy it manually via the cli.
 
-###### Simple way
+##### Simple way
 
 Just push to heroku, to build container and deploy:
 
@@ -95,7 +95,7 @@ Note that migrations are run automatically using a release phase command.
 $ git push heroku
 ```
 
-###### Manual way
+##### Manual way
 
 Build and push the container:
 
@@ -116,7 +116,7 @@ Deploy the new frontend container:
 $ heroku container:release web
 ```
 
-##### Sidekiq
+#### Sidekiq
 
 Start the number of background workers needed:
 
