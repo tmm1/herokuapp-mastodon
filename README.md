@@ -84,3 +84,9 @@ Push to heroku, to build container and deploy:
 ```
 $ git push heroku
 ```
+
+Start the sidekiq workers:
+
+```
+$ heroku ps:scale worker=1
+```
