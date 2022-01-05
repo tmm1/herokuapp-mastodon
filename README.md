@@ -45,14 +45,30 @@ $ heroku config:set $(docker run --rm -e OTP_SECRET=placeholder -e SECRET_KEY_BA
 
 #### Settings
 
-Configure storage for uploaded user photos and videos.
+##### Storage for uploaded user photos and videos
 
 See [lib/tasks/mastodon.rake](https://github.com/mastodon/mastodon/blob/5ba46952af87e42a64962a34f7ec43bc710bdcaf/lib/tasks/mastodon.rake#L137) for environment variables available for Wasabi, Minio or Google Cloud Storage.
 
 ```
-$ heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
+$ heroku config:set S3_ENABLED=true S3_BUCKET=bbb AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
 ```
 
+##### Outgoing email
+
+```
+$ heroku addons:create mailgun
+$ heroku config | grep MAILGUN_
+$ heroku config:set SMTP_SERVER= SMTP_LOGIN= SMTP_PASSWORD= SMTP_FROM_ADDRESS=
+```
+
+##### ElasticSearch (optional)
+
+```
+$ heroku addons:create bonsai
+$ heroku config:get BONSAI_URL
+$ heroku config:set ES_ENABLED=true ES_HOST= ES_PORT= ES_USER= ES_PASS=
+
+```
 
 #### Deploy
 

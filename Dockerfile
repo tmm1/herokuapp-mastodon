@@ -14,6 +14,7 @@ RUN rm -f /etc/nginx/sites-available/default /etc/nginx/modules-available/* && \
     rm -rf /var/lib/nginx /var/log/nginx && \
     ln -nsf /run/nginx/temp /var/lib/nginx && \
     ln -nsf /run/nginx/log /var/log/nginx
+RUN rm -rf .env .env.production && touch .env .env.production
 
 # copy over our extra stuff
 COPY --chown=mastodon:mastodon Procfile* nginx* release.sh /opt/mastodon/
