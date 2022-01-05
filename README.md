@@ -73,20 +73,54 @@ $ heroku config:set SMTP_SERVER= SMTP_LOGIN= SMTP_PASSWORD= SMTP_FROM_ADDRESS=
 $ heroku addons:create bonsai
 $ heroku config:get BONSAI_URL
 $ heroku config:set ES_ENABLED=true ES_HOST= ES_PORT= ES_USER= ES_PASS=
-
 ```
 
-#### Deploy
+##### Deploy
 
-Push to heroku, to build container and deploy:
-(Migrations will automatically be run as part of the release command.)
+There are two ways to deploy.
+
+You can either push this repo to heroku via git, triggering the `heroku.yml`
+manifest which will build the Docker image on heroku's servers and deploy it.
+
+Or you can build the docker locally, and push it directly to heroku's container
+registry and then deploy it manually via the cli.
+
+###### Simple way
+
+Just push to heroku, to build container and deploy:
+
+Note that migrations are run automatically using a release phase command.
 
 ```
 $ git push heroku
 ```
 
-Start the sidekiq workers:
+###### Manual way
+
+Build and push the container:
+
+```
+$ heroku container:push web
+```
+
+Build and push the release container, then trigger it to run migrations (optional):
+
+```
+$ heroku container:push release
+$ heroku container:release release
+```
+
+Deploy the new frontend container:
+
+```
+$ heroku container:release web
+```
+
+##### Sidekiq
+
+Start the number of background workers needed:
 
 ```
 $ heroku ps:scale worker=1
 ```
+
